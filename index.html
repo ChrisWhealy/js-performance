@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html class="no-js">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>JavaScript/WASM Performance Comparison - Mandelbrot/Julia Sets</title>
+<style type="text/css">
+  @charset "ISO-8859-1";
+</style>
+</head>
+
+<body id='body'>
+  <div id="container">
+    <div class="content">
+      <section id="mandelParameters">
+        <table>
+        <tr><td rowspan="2">Calculate using:</td>
+            <td><label for='calcUsingJS'><input type='radio' id='calcUsingJS' name='calcUsing' value='JS' /> JavaScript</label></td>
+            <td>Mandelbrot Set <span id='mandelJSRuntime'>0</span> ms</td>
+            <td>Julia Set <span id='juliaJSRuntime'>0</span> ms</td>
+            <td>(J to select)</td>
+        </tr>
+        <tr><td><label for='calcUsingWASM'><input type='radio' id='calcUsingWASM' name='calcUsing' value='WASM' checked /> WebAssembly</label></td>
+            <td>Mandelbrot Set <span id='mandelWASMRuntime'>0</span> ms</td>
+            <td>Julia Set <span id='juliaWASMRuntime'>0</span> ms</td>
+            <td>(W to select)</td>
+        </tr>
+        <tr><td>Colour scheme:</td>
+            <td colspan='3'>
+                <label for='colourScheme0'><input type='radio' id='colourScheme0' name='colourScheme' value='0' /> Grey scale</label>
+                <label for='colourScheme1'><input type='radio' id='colourScheme1' name='colourScheme' value='1' checked /> Fire</label>
+                <label for='colourScheme2'><input type='radio' id='colourScheme2' name='colourScheme' value='2' /> Web safe</label>
+                <label for='colourScheme3'><input type='radio' id='colourScheme3' name='colourScheme' value='3' /> Rainbow</label>
+            </td>
+            <td>(G, F, S or R to select)</td>
+        </tr>
+        <tr><td>Iteration depth:</td>
+            <td colspan='4'>
+                <input type='number' id='maxIters' value='1000' width='3' size='5' />
+                &nbsp;&nbsp;&nbsp;Click on the Mandelbrot Set to zoom in, right click to zoom out
+            </td>
+        </tr>
+        <tr><td colspan='5' align='center'><input type="submit" value=" Reset " id="resetUIButton" /></td></tr>
+        </table>
+      </section>
+      <section id="plotArea"  oncontextmenu="return false;">
+        <canvas id="mandelImage" width="800" height="450"></canvas>
+        <p align="center" style='font-size:0.75em; color:black; margin: 0 auto;'>
+          Julia set corresponding to coordinates (<span id='mouseX'></span>, <span id='mouseY'></span>) on the Mandelbrot set</p>
+        <canvas id="juliaImage"  width="800" height="450"></canvas>
+      </section>
+    </div>
+  </div>
+
+
+<script type="module">
+import init    from './pkg/fractal_explorer.js'
+import startJS from './js/main.js'
+
+async function startWASM() {
+  await init()
+  console.log("WASM module initialisation complete...")
+  startJS()
+}
+
+  startWASM()
+</script>
+</body>
+</html>

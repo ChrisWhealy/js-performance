@@ -1,0 +1,16 @@
+{
+  "name": "fractal_explorer",
+  "collaborators": [
+    "Chris Whealy <chris@whealy.com>"
+  ],
+  "description": "Draws the Mandelbrot Set and the corresponding Julia Set for a given location on the Mandelbrot Set",
+  "version": "0.1.0",
+  "files": [
+    "fractal_explorer_bg.wasm",
+    "fractal_explorer.js",
+    "fractal_explorer.d.ts"
+  ],
+  "module": "fractal_explorer.js",
+  "types": "fractal_explorer.d.ts",
+  "sideEffects": "false"
+}
