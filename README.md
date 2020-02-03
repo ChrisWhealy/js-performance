@@ -2,7 +2,9 @@
 
 This repo illustrates a reproducible, but unexpected JavaScript performance issue related to partial functions and `for` loops.
 
-This issue only occurs in browsers using the V8 JavaScript engine - Google Chrome or Brave.  Im my case, I discovered this issue when testing using the Brave browser.
+This issue only occurs in browsers using the V8 JavaScript engine - Google Chrome or Brave.  In my case, I discovered this issue when testing using the Brave browser and reported it on [StackOverflow](https://stackoverflow.com/questions/59616335/can-anyone-explain-this-unexpected-v8-javascript-performance-behaviour) and [bugs.chromium.org](https://bugs.chromium.org/p/v8/issues/detail?id=10100)
+
+
 
 ## Steps to reproduce the problem
 
@@ -17,15 +19,15 @@ This issue only occurs in browsers using the V8 JavaScript engine - Google Chrom
 
 1. You need to have the browser developer tools switched on during this test to ensure that no caching takes place
 
-1. Point your to [http://0.0.0.0:8000/](http://0.0.0.0:8000/) and press "j" to select calculation using JavaScript instead of WebAssembly
+1. Point your browser to [http://0.0.0.0:8000/](http://0.0.0.0:8000/) and press "j" to select calculation using JavaScript instead of WebAssembly
 
 1. On the image of the Mandelbrot set, move the mouse pointer around in the narrow gap between the main cardioid and the period 2 bulb
 
     ![Mandelbrot Set](./img/screenshot1.png)
 
-1. You will see that as ypou move the mouse pointer, the corresponding Julia set is displayed below the Mandelbrot set.
+1. You will see that as you move the mouse pointer, the corresponding Julia set is displayed below the Mandelbrot set.
 
-    Notice that the calculation time is somewhere between 20 and 40 milliseconds
+    On my MacBook Pro (2018, 2.9GHz 6-Core Intel i9), the calculation time is between 20 and 40 milliseconds
     
 1. Now open the JavaScript file [fractal.js](./js/fractal.js#L205) and locate function `JuliaCalcJS` on line 205
 
